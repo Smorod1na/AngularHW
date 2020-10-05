@@ -1,0 +1,11 @@
+.icon-empty{
+    color:red;
+}
+.info-event{
+    display: flex;
+    flex-direction: row;
+  align-content: space-around;
+}
+.icon-green{
+    color:green;
+}
