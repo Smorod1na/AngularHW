@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Event} from '../event.model';
+import { Event } from '../event.model';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-event-list',
@@ -8,30 +9,53 @@ import {Event} from '../event.model';
 })
 export class EventListComponent implements OnInit {
 
-  events:Event[]=[
-    new Event(
-"JS events",
-"...",
-"https://lh3.googleusercontent.com/lzYcyNuHnyYbHE_Aw2ArR4iTK5DKXZliygd_rmOhY1-TR8_qGQQE_9DM7YZDRdFqwSK99nULOBo=w640-h400-e365-rj-sc0x00ffffff",
-"07.07.2017"),
-new Event(
-  "JS events2",
-  "...",
-  "https://www.insidescience.org/sites/default/files/3_crop_ngc6338.jpg",
-  "07.07.2018"),
-  new Event(
-    "JS events3",
-    "...",
-    "https://cdn.mos.cms.futurecdn.net/BxZtwv3rZMNSzTakHxKV2Q.jpg",
-    "07.07.2019"),
-  ];
 
+  constructor(private eventsService: EventService) { }
 
+  count: number = 1
+test:number[]=[]
+  events: Event[];
+  selectedEvents:Event[]=[]
+  goNext() {
 
+  }
 
-  constructor() { }
+  goPrevious() {
+
+  }
+
+  goNumber() {
+
+  }
 
   ngOnInit() {
+    this.events = this.eventsService.getAllVisibleEvents();
+    this.count=this.events.length/10
+    
+    if(this.events.length%10>0)
+    this.count++;
+    console.log(Math.round(this.count))
+
+    for(let i=1;i<this.count;i++)
+    {
+      this.test.push(i)
+    }
+
+    for(let i=0;i<10;i++)
+    {
+      this.selectedEvents.push(this.events[i])
+    }
+
+
+    // this.eventsService.refreshList.subscribe((events: Event[]) => {
+    //   this.events = events;
+    // })
+
+    this.eventsService.refreshList.subscribe((selectedEvents: Event[]) => {
+      this.selectedEvents = selectedEvents;
+    })
+
+
   }
 
 }

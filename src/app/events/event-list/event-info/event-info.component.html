@@ -1,0 +1,11 @@
+<div class="container-fluid">
+<h4 class="text-warning">
+ Current event id: {{id}}
+</h4>
+<div class="test">
+<h2 class=" text-primary">
+ Event name: {{currentEvent.name}}
+</h2></div>
+<app-task-item class="col-lg-3 col-md-3 col-sm-3 " *ngFor="let item of currentEvent.currentTasks;
+let i=index" [currentTask]="item" [index]="i">
+     </app-task-item></div>

@@ -1,10 +1,17 @@
 
 <div class="card">
-  <img [src]="currentEvent.image_url"  height="400" class="card-img-top" alt="...">
+ <a [routerLink]="['/events',(currentEvent.id)]" ><img [src]="currentEvent.image_url"  height="400" class="card-img-top" alt="..."></a> 
   <div class="card-body">
+
       <h5 class="card-title">{{currentEvent.name}}</h5>
       <i *ngIf="isPriority==true" (click)="setPriority()" class="far fa-check-square icon-empty">IsPririty</i>
       <i *ngIf="isPriority==false"   (click)="setPriority()" class="fas fa-check-square icon-green">IsPririty</i>
-    <p class="card-text">{{currentEvent.dateStarted}}</p>
+      <i *ngIf="currentEvent.isVisible==true" (click)="setVisible(currentEvent.name)" class="fas fa-eye"></i>
+      <p class="card-text">{{currentEvent.dateStarted}}</p>
+      <select class="form-control" (change)="setTask(this.$event)">
+        <option selected>Select the task</option>
+        <option *ngFor="let item of tasks;
+        let i=index" >{{item.title}}</option>
+      </select>
   </div>
 </div>

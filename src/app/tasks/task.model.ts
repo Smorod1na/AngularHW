@@ -1,8 +1,11 @@
 export class Task{
-    public text:string;
-   
+    public title:string;
+   public description:string;
+   public date:string;
     
-    constructor(text:string){
-        this.text=text;      
+    constructor(title:string,description:string,date:string){
+        this.title=title;  
+        this.description=description;
+        this.date=date    
     }
     }
